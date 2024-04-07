@@ -7,6 +7,7 @@ build:
 .PHONY: run
 run:
 	docker run -it --name $(PIPELINE_NAME) 	\
+		-p 3000:3000 \
 		-v ./jaffle_shop:/opt/dagster/app/jaffle_shop \
 		-w /opt/dagster/app/ \
 		$(PIPELINE_NAME) bash

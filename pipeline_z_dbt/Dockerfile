@@ -14,7 +14,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Run dagster gRPC server on port 4000
 
-# EXPOSE 4000
+EXPOSE 3000
 
 # CMD allows this to be overridden from run launchers or executors that want
 # to run other commands against your repository
