@@ -10,4 +10,6 @@ class SqlAlchemyClientResource(ConfigurableResource):
     database_name: str
 
     def create_engine(self):
-        return sqlalchemy.create_engine(f"postgresql://{self.database_user}:{self.database_password}@{self.database_ip}:{self.database_port}/{self.database_name}")
+        return sqlalchemy.create_engine(
+            f"postgresql://{self.database_user}:{self.database_password}@{self.database_ip}:{self.database_port}/{self.database_name}"
+        )

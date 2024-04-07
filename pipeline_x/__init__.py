@@ -18,18 +18,24 @@ def schedule_etl(_context):
 defs = Definitions(
     resources={
         "io_manager": S3PickleIOManager(
-            s3_resource=S3Resource(aws_access_key_id=EnvVar("AWS_ACCESS_KEY_ID"),
-                                   aws_secret_access_key=EnvVar("AWS_SECRET_ACCESS_KEY")),
+            s3_resource=S3Resource(
+                aws_access_key_id=EnvVar("AWS_ACCESS_KEY_ID"),
+                aws_secret_access_key=EnvVar("AWS_SECRET_ACCESS_KEY"),
+            ),
             s3_bucket="etl-dagster-data",
             s3_prefix="op-io-data",
         ),
-        "s3_io_manager": S3Resource(aws_access_key_id=EnvVar("AWS_ACCESS_KEY_ID"),
-                                    aws_secret_access_key=EnvVar("AWS_SECRET_ACCESS_KEY")),
-        "postgres_io_manager": SqlAlchemyClientResource(database_ip=EnvVar("DATABASE_IP"),
-                                                        database_port=EnvVar("DATABASE_PORT"),
-                                                        database_user=EnvVar("DATABASE_USER"),
-                                                        database_password=EnvVar("DATABASE_PASSWORD"),
-                                                        database_name=EnvVar("DATABASE_NAME")
-                                                        )
+        "s3_io_manager": S3Resource(
+            aws_access_key_id=EnvVar("AWS_ACCESS_KEY_ID"),
+            aws_secret_access_key=EnvVar("AWS_SECRET_ACCESS_KEY"),
+        ),
+        "postgres_io_manager": SqlAlchemyClientResource(
+            database_ip=EnvVar("DATABASE_IP"),
+            database_port=EnvVar("DATABASE_PORT"),
+            database_user=EnvVar("DATABASE_USER"),
+            database_password=EnvVar("DATABASE_PASSWORD"),
+            database_name=EnvVar("DATABASE_NAME"),
+        ),
     },
-    schedules=[schedule_etl])
+    schedules=[schedule_etl],
+)
