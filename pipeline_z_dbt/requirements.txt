@@ -1,0 +1,8 @@
+dbt-duckdb
+dagster
+dagster-dbt
+dagster-webserver
+duckdb
+pandas
+plotly
+pyarrow

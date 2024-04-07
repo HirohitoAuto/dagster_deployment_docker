@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  pipeline_z_dbt:
+    build: .
+    container_name: pipeline_z_dbt
+    volumes:
+      - ./jaffle_shop:/opt/dagster/app/
+    entrypoint: "bash"
+    tty: true
+    stdin_open: true
