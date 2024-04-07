@@ -7,19 +7,8 @@ Deploy multiple Dagster data pipelines on Docker environment
 
 ### start
 ```bash
-cd pipeline_x
-docker build -t pipeline-x . 
-cd ../pipeline_y
-docker build -t pipeline-y .
+make build  # build image
+make up     # compose up & open dagster UI
+make down   # compose down 
 ```
-
-```bash
-docker build -t dagster .
-```
-
-```bash
-docker-compose up -d
-```
-
-
 http://127.0.0.1:3000
