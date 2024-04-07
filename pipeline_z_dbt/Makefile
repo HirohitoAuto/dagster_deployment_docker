@@ -2,12 +2,20 @@ PIPELINE_NAME = pipeline_z_dbt
 
 .PHONY: build
 build:
-	docker compose build
+	docker build -t $(PIPELINE_NAME) .
 
-.PHONY: up
-up: 
-	docker-compose up -d && docker compose exec $(PIPELINE_NAME) bash
+.PHONY: run
+run:
+	docker run -it --name $(PIPELINE_NAME) 	\
+		-v ./jaffle_shop:/opt/dagster/app/jaffle_shop \
+		-w /opt/dagster/app/ \
+		$(PIPELINE_NAME) bash
 
-.PHONY: down
-down:
-	docker compose down $(PIPELINE_NAME)
+.PHONY: clean
+clean:
+	docker rm $(PIPELINE_NAME)
+
+.PHONY: permissions
+permissions:
+	sudo chown -R $(whoami):$(whoami) jaffle_shop/
+	sudo chmod -R 755 jaffle_shop/
